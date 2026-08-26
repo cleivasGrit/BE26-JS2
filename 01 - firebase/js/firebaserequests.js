@@ -26,3 +26,92 @@ export async function addName() {
         throw error;
     }
 }
+
+export async function getAllNames(){
+    try{
+        const response = await fetch(`${baseUrl}.json`);
+        if(!response.ok) {
+            throw 'Something went wrong';
+        }
+        const data = await response.json();
+        return data;
+    }
+    catch(error) {
+        throw error;
+    }
+}
+
+// POST
+export async function post() {
+    const options = {
+        // post skapar ett firebase ID
+        method: 'POST',
+        body: JSON.stringify(
+            {
+                prop: 'value'
+            }
+        ),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }
+
+    try{
+        const response = await fetch(`${baseUrl}/clara.json`, options);
+        if(!response.ok) {
+            throw 'Something went wrong';
+        }
+        const data = await response.json();
+        return data;
+    }
+    catch(error) {
+        throw error;
+    }
+}
+
+// PATCH
+export async function patch() {
+    const options = {
+        // 
+        method: 'PATCH',
+        body: JSON.stringify(
+            {
+                nickname: 'the mighty'
+            }
+        ),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }
+
+    try{
+        const response = await fetch(`${baseUrl}/clara.json`, options);
+        if(!response.ok) {
+            throw 'Something went wrong';
+        }
+        const data = await response.json();
+        return data;
+    }
+    catch(error) {
+        throw error;
+    }
+}
+
+// DELETE
+export async function del() {
+    const options = {
+        method: 'DELETE'
+    }
+
+    try{
+        const response = await fetch(`${baseUrl}/clara/-P-xHTuhXm8n37UwegN0.json`, options);
+        if(!response.ok) {
+            throw 'Something went wrong';
+        }
+        const data = await response.json();
+        return data;
+    }
+    catch(error) {
+        throw error;
+    }
+}
