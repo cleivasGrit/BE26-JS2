@@ -1,0 +1,11 @@
+li{
+    display: flex;
+}
+
+li p{
+    cursor: pointer;
+}
+
+.done{
+    text-decoration: line-through;
+}
