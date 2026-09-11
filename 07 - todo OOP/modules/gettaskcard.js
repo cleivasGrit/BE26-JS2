@@ -5,24 +5,28 @@ export function getTaskCard(task) {
     const taskP = document.createElement('p');
     const delBtn = document.createElement('button');
 
-    cardDiv.append(taskP);
+    cardDiv.append(taskP, delBtn);
     delBtn.innerText = 'X';
     taskP.innerText = task.getTask(); //taskgenskapen är privat, så vi använder gettern
 
+    // Lägg till eventlistener för att ta bort tasken
+    delBtn.addEventListener('click', async () => {
+        try {
+            await task.delete();
+            cardDiv.remove();
+        }
+        catch (error) {
+            console.log(error);
+        }
+    })
+
+
     if (task.getIsDone()) {
-        cardDiv.append(delBtn);
         taskP.classList.add('done');
-       
-        // Ta bort tasken
-        delBtn.addEventListener('click', async ()=>{
-            try{
-                await task.delete();
-                cardDiv.remove();
-            }
-            catch(error){
-                console.log(error);
-            }
-        })
+    }
+    else{
+        //gömmer deleteknappen
+        delBtn.classList.add('hidden');
     }
 
 
@@ -31,11 +35,9 @@ export function getTaskCard(task) {
         // Om patchen lyckas behöver vi uppdatera DOM:en så att det aktuella taskCard visar rätt utseende beroende på värdet av isDone
         try {
             await task.patchIsDone()
-            taskP.classList.toggle('done'); //Lägg till eller ta bort css-klassen
-            
-            // Lägg till eller ta bort knappen
-            if (task.getIsDone()) cardDiv.append(delBtn);
-            else delBtn.remove();
+            //Lägg till eller ta bort css-klasser
+            taskP.classList.toggle('done'); 
+            delBtn.classList.toggle('hidden');
         }
         catch (error) {
             console.log(error)
