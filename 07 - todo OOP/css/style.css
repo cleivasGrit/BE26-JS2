@@ -1,0 +1,11 @@
+#taskWrapper div{
+    display: flex;
+}
+
+div p{
+    cursor: pointer;
+}
+
+.done{
+    text-decoration: line-through;
+}

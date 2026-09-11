@@ -1,4 +1,5 @@
 const form = document.querySelector('form');
+
 form.addEventListener('submit', event =>{
     event.preventDefault();
 
@@ -6,7 +7,7 @@ form.addEventListener('submit', event =>{
     const formData = new FormData(form);
     console.log(formData);
 
-    // vi kan loopa igenom om vi behöver
+    // vi kan loopa igenom det som en array om vi behöver
     for(const pair of formData){
         console.log(pair)
     }
@@ -18,6 +19,7 @@ form.addEventListener('submit', event =>{
     // Omvandlar till vanligt objekt
     const regObj = Object.fromEntries(formData.entries());
     console.log(regObj);
+
     const json = JSON.stringify(regObj);
     console.log(json)
 })
